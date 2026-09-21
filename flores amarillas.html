@@ -1,0 +1,3619 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color"
+content="#f5b700">
+
+<title>
+Para ti 🌻 | Día de las Flores Amarillas
+</title>
+
+
+<style>
+
+/* =========================================================
+   CONFIGURACIÓN GENERAL
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background:
+        #120d00;
+
+    color: white;
+
+    overflow-x: hidden;
+
+    transition:
+        background 1s ease;
+}
+
+button {
+    font-family: inherit;
+}
+
+::selection {
+    background: #ffd000;
+    color: #3b2800;
+}
+
+
+/* =========================================================
+   LOADER
+========================================================= */
+
+.loader {
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #ffe873,
+            #d99400 45%,
+            #100b00 100%
+        );
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+
+    z-index: 99999;
+
+    transition:
+        opacity 1s ease,
+        visibility 1s ease;
+}
+
+.loader.oculto {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-flor {
+    font-size: 90px;
+
+    animation:
+        crecerFlor 1.5s infinite alternate,
+        girarFlor 4s linear infinite;
+}
+
+.loader p {
+    margin-top: 20px;
+
+    font-size: 18px;
+
+    letter-spacing: 4px;
+
+    color: white;
+}
+
+@keyframes crecerFlor {
+
+    from {
+        transform: scale(.8);
+    }
+
+    to {
+        transform: scale(1.15);
+    }
+
+}
+
+@keyframes girarFlor {
+
+    from {
+        rotate: 0deg;
+    }
+
+    to {
+        rotate: 360deg;
+    }
+
+}
+
+
+/* =========================================================
+   FONDO
+========================================================= */
+
+#fondo {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: -10;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(255, 214, 50, .25),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 80% 30%,
+            rgba(255, 170, 0, .2),
+            transparent 35%
+        ),
+
+        linear-gradient(
+            135deg,
+            #241700,
+            #5d3b00,
+            #1c1100
+        );
+
+    transition:
+        background 1s ease;
+}
+
+body.modo-noche #fondo {
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            #614900,
+            transparent 25%
+        ),
+
+        linear-gradient(
+            135deg,
+            #050505,
+            #161100,
+            #020202
+        );
+}
+
+
+/* =========================================================
+   PARTÍCULAS
+========================================================= */
+
+.particula {
+    position: fixed;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: #ffd900;
+
+    pointer-events: none;
+
+    z-index: -2;
+
+    box-shadow:
+        0 0 10px #ffd000,
+        0 0 20px #ffd000;
+
+    animation:
+        subirParticula
+        linear
+        infinite;
+}
+
+@keyframes subirParticula {
+
+    0% {
+        transform:
+            translateY(110vh)
+            translateX(0)
+            scale(.2);
+
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            translateY(-20vh)
+            translateX(100px)
+            scale(1.2);
+
+        opacity: 0;
+    }
+
+}
+
+
+/* =========================================================
+   PÉTALOS
+========================================================= */
+
+.petalo {
+
+    position: fixed;
+
+    top: -80px;
+
+    pointer-events: none;
+
+    z-index: 20;
+
+    animation:
+        caerPetalo
+        linear
+        forwards;
+
+    filter:
+        drop-shadow(
+            0 0 5px
+            rgba(255, 204, 0, .7)
+        );
+}
+
+@keyframes caerPetalo {
+
+    0% {
+        transform:
+            translateY(-100px)
+            rotate(0deg)
+            translateX(0);
+
+        opacity: 1;
+    }
+
+    50% {
+        transform:
+            translateY(50vh)
+            rotate(180deg)
+            translateX(100px);
+    }
+
+    100% {
+        transform:
+            translateY(110vh)
+            rotate(360deg)
+            translateX(-100px);
+
+        opacity: 0;
+    }
+
+}
+
+
+/* =========================================================
+   PANTALLA PRINCIPAL
+========================================================= */
+
+.hero {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    position: relative;
+
+    padding: 30px;
+
+    overflow: hidden;
+}
+
+.hero-contenido {
+
+    max-width: 950px;
+
+    position: relative;
+
+    z-index: 5;
+
+    animation:
+        aparecerHero
+        1.5s ease;
+}
+
+@keyframes aparecerHero {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(60px)
+            scale(.9);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+/* =========================================================
+   FLORES LATERALES
+========================================================= */
+
+.flor-lateral {
+
+    position: absolute;
+
+    font-size: 100px;
+
+    opacity: .5;
+
+    filter:
+        drop-shadow(
+            0 0 20px
+            rgba(255, 208, 0, .5)
+        );
+
+    animation:
+        flotarLateral
+        5s ease-in-out
+        infinite;
+}
+
+.flor-lateral.uno {
+    left: 3%;
+    top: 15%;
+}
+
+.flor-lateral.dos {
+    right: 4%;
+    top: 25%;
+
+    animation-delay: 1s;
+}
+
+.flor-lateral.tres {
+    left: 10%;
+    bottom: 10%;
+
+    animation-delay: 2s;
+}
+
+.flor-lateral.cuatro {
+    right: 12%;
+    bottom: 8%;
+
+    animation-delay: 3s;
+}
+
+@keyframes flotarLateral {
+
+    0%,100% {
+        transform:
+            translateY(0)
+            rotate(-5deg);
+    }
+
+    50% {
+        transform:
+            translateY(-25px)
+            rotate(8deg);
+    }
+
+}
+
+
+/* =========================================================
+   TEXTO HERO
+========================================================= */
+
+.etiqueta {
+
+    display: inline-block;
+
+    padding:
+        10px 20px;
+
+    border:
+        1px solid
+        rgba(255, 220, 70, .5);
+
+    border-radius: 50px;
+
+    background:
+        rgba(255, 211, 0, .1);
+
+    backdrop-filter:
+        blur(10px);
+
+    color: #ffe56b;
+
+    letter-spacing: 3px;
+
+    font-size: 13px;
+
+    margin-bottom: 25px;
+}
+
+.hero h1 {
+
+    font-size:
+        clamp(55px, 11vw, 125px);
+
+    line-height: .9;
+
+    font-weight: 900;
+
+    background:
+        linear-gradient(
+            90deg,
+            #fff5a0,
+            #ffd000,
+            #fff,
+            #ffb700,
+            #fff36d
+        );
+
+    background-size: 300%;
+
+    -webkit-background-clip: text;
+
+    background-clip: text;
+
+    color: transparent;
+
+    animation:
+        brilloTexto
+        5s linear
+        infinite;
+}
+
+@keyframes brilloTexto {
+
+    0% {
+        background-position: 0%;
+    }
+
+    100% {
+        background-position: 300%;
+    }
+
+}
+
+.hero h2 {
+
+    font-size:
+        clamp(20px, 4vw, 36px);
+
+    margin-top: 25px;
+
+    color: #fff6bf;
+
+    font-weight: 300;
+
+    letter-spacing: 2px;
+}
+
+.hero-descripcion {
+
+    max-width: 650px;
+
+    margin:
+        25px auto 35px;
+
+    color:
+        rgba(255,255,255,.75);
+
+    font-size: 18px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   BOTONES
+========================================================= */
+
+.btn {
+
+    border: none;
+
+    padding:
+        16px 30px;
+
+    border-radius: 100px;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        .3s ease;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.btn::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 0;
+    height: 100%;
+
+    left: 50%;
+    top: 0;
+
+    background:
+        rgba(255,255,255,.3);
+
+    transform:
+        translateX(-50%);
+
+    transition:
+        width .4s ease;
+}
+
+.btn:hover::before {
+    width: 120%;
+}
+
+.btn:hover {
+
+    transform:
+        translateY(-5px)
+        scale(1.03);
+
+}
+
+.btn-principal {
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffe600,
+            #ffae00
+        );
+
+    color:
+        #3a2600;
+
+    box-shadow:
+        0 10px 35px
+        rgba(255,190,0,.4);
+}
+
+.btn-secundario {
+
+    margin-left: 10px;
+
+    background:
+        rgba(255,255,255,.08);
+
+    color: white;
+
+    border:
+        1px solid
+        rgba(255,255,255,.2);
+
+    backdrop-filter:
+        blur(10px);
+}
+
+
+/* =========================================================
+   INDICADOR SCROLL
+========================================================= */
+
+.scroll {
+
+    position: absolute;
+
+    bottom: 25px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    color:
+        rgba(255,255,255,.6);
+
+    font-size: 13px;
+
+    letter-spacing: 3px;
+
+    animation:
+        subirBajar
+        2s infinite;
+}
+
+@keyframes subirBajar {
+
+    0%,100% {
+        transform:
+            translateX(-50%)
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateX(-50%)
+            translateY(10px);
+    }
+
+}
+
+
+/* =========================================================
+   SECCIONES
+========================================================= */
+
+.seccion {
+
+    min-height: 100vh;
+
+    padding:
+        120px 8%;
+
+    position: relative;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+.contenedor {
+
+    width: 100%;
+
+    max-width: 1200px;
+
+    margin: auto;
+}
+
+.titulo-seccion {
+
+    text-align: center;
+
+    margin-bottom: 70px;
+}
+
+.titulo-seccion span {
+
+    color: #ffd000;
+
+    font-size: 14px;
+
+    letter-spacing: 4px;
+}
+
+.titulo-seccion h2 {
+
+    margin-top: 12px;
+
+    font-size:
+        clamp(40px, 6vw, 70px);
+
+    color: white;
+}
+
+.titulo-seccion p {
+
+    max-width: 650px;
+
+    margin:
+        20px auto;
+
+    line-height: 1.8;
+
+    color:
+        rgba(255,255,255,.65);
+}
+
+
+/* =========================================================
+   JARDÍN
+========================================================= */
+
+.jardin {
+
+    min-height: 600px;
+
+    position: relative;
+
+    border-radius: 40px;
+
+    overflow: hidden;
+
+    background:
+
+        linear-gradient(
+            to bottom,
+            #9c7400 0%,
+            #574000 50%,
+            #1c1600 100%
+        );
+
+    border:
+        1px solid
+        rgba(255,220,0,.2);
+
+    box-shadow:
+        0 30px 100px
+        rgba(0,0,0,.4);
+}
+
+.luna {
+
+    position: absolute;
+
+    width: 110px;
+    height: 110px;
+
+    border-radius: 50%;
+
+    background:
+        #fff2a6;
+
+    right: 10%;
+
+    top: 10%;
+
+    box-shadow:
+        0 0 50px
+        rgba(255,231,100,.5);
+}
+
+.estrella {
+
+    position: absolute;
+
+    color: #fff;
+
+    animation:
+        parpadear
+        2s infinite;
+}
+
+@keyframes parpadear {
+
+    0%,100% {
+        opacity: .2;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+}
+
+
+/* =========================================================
+   FLORES INTERACTIVAS
+========================================================= */
+
+.flores-jardin {
+
+    position: absolute;
+
+    inset: 0;
+}
+
+.flor {
+
+    position: absolute;
+
+    font-size:
+        clamp(45px, 7vw, 80px);
+
+    cursor: pointer;
+
+    transition:
+        .5s cubic-bezier(.2,.8,.2,1);
+
+    user-select: none;
+
+    filter:
+        drop-shadow(
+            0 0 10px
+            rgba(255,208,0,.4)
+        );
+}
+
+.flor:hover {
+
+    transform:
+        scale(1.5)
+        rotate(15deg);
+
+    filter:
+        drop-shadow(
+            0 0 30px
+            #ffd000
+        );
+}
+
+.flor:active {
+
+    transform:
+        scale(.7)
+        rotate(-20deg);
+}
+
+
+/* posiciones */
+
+.flor:nth-child(1) {
+    left: 8%;
+    bottom: 18%;
+}
+
+.flor:nth-child(2) {
+    left: 25%;
+    bottom: 12%;
+}
+
+.flor:nth-child(3) {
+    left: 42%;
+    bottom: 20%;
+}
+
+.flor:nth-child(4) {
+    left: 60%;
+    bottom: 14%;
+}
+
+.flor:nth-child(5) {
+    left: 77%;
+    bottom: 22%;
+}
+
+.flor:nth-child(6) {
+    left: 90%;
+    bottom: 10%;
+}
+
+.flor:nth-child(7) {
+    left: 15%;
+    bottom: 40%;
+}
+
+.flor:nth-child(8) {
+    left: 50%;
+    bottom: 43%;
+}
+
+.flor:nth-child(9) {
+    left: 70%;
+    bottom: 37%;
+}
+
+.flor:nth-child(10) {
+    left: 34%;
+    bottom: 50%;
+}
+
+
+/* =========================================================
+   MENSAJE FLOTANTE
+========================================================= */
+
+.mensaje-flor {
+
+    position: fixed;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%,-50%)
+        scale(.7);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    background:
+        rgba(30,20,0,.95);
+
+    border:
+        1px solid
+        #ffd000;
+
+    padding:
+        30px;
+
+    border-radius:
+        25px;
+
+    max-width:
+        400px;
+
+    text-align: center;
+
+    z-index: 1000;
+
+    box-shadow:
+        0 0 80px
+        rgba(255,208,0,.4);
+
+    transition:
+        .4s ease;
+}
+
+.mensaje-flor.activo {
+
+    opacity: 1;
+
+    transform:
+        translate(-50%,-50%)
+        scale(1);
+
+    pointer-events: auto;
+}
+
+.mensaje-flor .emoji {
+
+    font-size: 60px;
+
+    margin-bottom: 15px;
+}
+
+.mensaje-flor h3 {
+
+    color:
+        #ffd000;
+
+    margin-bottom: 10px;
+}
+
+.mensaje-flor p {
+
+    color:
+        rgba(255,255,255,.8);
+
+    line-height: 1.6;
+}
+
+.cerrar {
+
+    margin-top: 20px;
+
+    padding:
+        10px 20px;
+
+    border: none;
+
+    border-radius:
+        30px;
+
+    background:
+        #ffd000;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   CARTA
+========================================================= */
+
+.carta-contenedor {
+
+    display: flex;
+
+    justify-content: center;
+
+    perspective: 1500px;
+}
+
+.carta {
+
+    width:
+        min(600px, 90vw);
+
+    min-height: 400px;
+
+    position: relative;
+
+    cursor: pointer;
+
+    transform-style:
+        preserve-3d;
+
+    transition:
+        transform 1s;
+}
+
+.carta.abierta {
+
+    transform:
+        rotateY(180deg);
+}
+
+.carta-frente,
+.carta-atras {
+
+    position: absolute;
+
+    inset: 0;
+
+    backface-visibility:
+        hidden;
+
+    border-radius:
+        25px;
+
+    padding:
+        45px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    border:
+        1px solid
+        rgba(255,208,0,.3);
+
+    box-shadow:
+        0 30px 80px
+        rgba(0,0,0,.4);
+}
+
+.carta-frente {
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffd900,
+            #9e6500
+        );
+
+    color:
+        #3d2800;
+}
+
+.carta-frente .sobre {
+
+    font-size: 100px;
+
+    margin-bottom: 20px;
+}
+
+.carta-frente h3 {
+
+    font-size: 32px;
+}
+
+.carta-atras {
+
+    background:
+        linear-gradient(
+            145deg,
+            #fff8cf,
+            #ffd95a
+        );
+
+    color:
+        #4c3500;
+
+    transform:
+        rotateY(180deg);
+}
+
+.carta-atras h3 {
+
+    font-size: 30px;
+
+    margin-bottom: 25px;
+
+    color:
+        #b27600;
+}
+
+.carta-atras p {
+
+    line-height: 1.8;
+
+    font-size: 17px;
+}
+
+
+/* =========================================================
+   TIMELINE
+========================================================= */
+
+.timeline {
+
+    max-width:
+        900px;
+
+    margin: auto;
+
+    position: relative;
+}
+
+.timeline::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 0;
+
+    bottom: 0;
+
+    width: 3px;
+
+    background:
+        linear-gradient(
+            #ffd000,
+            transparent
+        );
+
+    transform:
+        translateX(-50%);
+}
+
+.evento {
+
+    width: 50%;
+
+    padding: 20px 40px;
+
+    position: relative;
+}
+
+.evento:nth-child(even) {
+
+    margin-left: 50%;
+}
+
+.evento-contenido {
+
+    padding: 25px;
+
+    background:
+        rgba(255,255,255,.06);
+
+    border:
+        1px solid
+        rgba(255,208,0,.2);
+
+    border-radius:
+        20px;
+
+    backdrop-filter:
+        blur(10px);
+
+    transition:
+        .4s;
+}
+
+.evento-contenido:hover {
+
+    transform:
+        translateY(-8px);
+
+    border-color:
+        rgba(255,208,0,.7);
+
+    box-shadow:
+        0 15px 40px
+        rgba(255,190,0,.1);
+}
+
+.evento h3 {
+
+    color:
+        #ffd000;
+
+    margin-bottom:
+        10px;
+}
+
+.evento p {
+
+    color:
+        rgba(255,255,255,.7);
+
+    line-height:
+        1.6;
+}
+
+
+/* =========================================================
+   CAJA SORPRESA
+========================================================= */
+
+.sorpresa {
+
+    text-align:
+        center;
+}
+
+.caja {
+
+    width:
+        180px;
+
+    height:
+        150px;
+
+    margin:
+        40px auto;
+
+    position:
+        relative;
+
+    cursor:
+        pointer;
+
+    transition:
+        .5s;
+}
+
+.caja:hover {
+
+    transform:
+        translateY(-15px)
+        rotate(3deg);
+}
+
+.caja-base {
+
+    position:
+        absolute;
+
+    width:
+        100%;
+
+    height:
+        110px;
+
+    bottom:
+        0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffc400,
+            #b86d00
+        );
+
+    border-radius:
+        10px;
+}
+
+.caja-tapa {
+
+    position:
+        absolute;
+
+    width:
+        110%;
+
+    height:
+        45px;
+
+    left:
+        -5%;
+
+    top:
+        10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffe100,
+            #d88900
+        );
+
+    border-radius:
+        10px;
+
+    transition:
+        .7s;
+}
+
+.caja-lazo {
+
+    position:
+        absolute;
+
+    width:
+        35px;
+
+    height:
+        150px;
+
+    left:
+        calc(50% - 17px);
+
+    top:
+        0;
+
+    background:
+        #fff0a0;
+
+    z-index:
+        5;
+}
+
+.caja.abierta .caja-tapa {
+
+    transform:
+        translateY(-90px)
+        rotate(-8deg);
+}
+
+.mensaje-sorpresa {
+
+    opacity:
+        0;
+
+    transform:
+        translateY(30px);
+
+    transition:
+        .7s;
+
+    font-size:
+        22px;
+
+    color:
+        #ffd000;
+}
+
+.mensaje-sorpresa.mostrar {
+
+    opacity:
+        1;
+
+    transform:
+        translateY(0);
+}
+
+
+/* =========================================================
+   FRASES
+========================================================= */
+
+.frase-box {
+
+    min-height:
+        300px;
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    align-items:
+        center;
+
+    flex-direction:
+        column;
+
+    text-align:
+        center;
+
+    padding:
+        40px;
+
+    border-radius:
+        35px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,213,0,.12),
+            rgba(255,255,255,.03)
+        );
+
+    border:
+        1px solid
+        rgba(255,213,0,.25);
+}
+
+.frase {
+
+    font-size:
+        clamp(
+            25px,
+            4vw,
+            45px
+        );
+
+    max-width:
+        850px;
+
+    line-height:
+        1.3;
+
+    color:
+        #fff5bd;
+
+    transition:
+        .5s;
+}
+
+.frase.autor {
+
+    margin-top:
+        25px;
+
+    font-size:
+        15px;
+
+    color:
+        #ffd000;
+
+    letter-spacing:
+        3px;
+}
+
+
+/* =========================================================
+   CONTADOR
+========================================================= */
+
+.contadores {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            1fr
+        );
+
+    gap:
+        20px;
+
+    max-width:
+        900px;
+
+    margin:
+        auto;
+}
+
+.contador {
+
+    text-align:
+        center;
+
+    padding:
+        35px 20px;
+
+    background:
+        rgba(255,255,255,.05);
+
+    border:
+        1px solid
+        rgba(255,208,0,.15);
+
+    border-radius:
+        25px;
+}
+
+.numero {
+
+    font-size:
+        55px;
+
+    font-weight:
+        900;
+
+    color:
+        #ffd000;
+}
+
+.contador p {
+
+    margin-top:
+        10px;
+
+    color:
+        rgba(255,255,255,.6);
+}
+
+
+/* =========================================================
+   FOTO
+========================================================= */
+
+.foto-seccion {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:
+        50px;
+
+    align-items:
+        center;
+}
+
+.foto-marco {
+
+    aspect-ratio:
+        1 / 1;
+
+    border-radius:
+        40px;
+
+    border:
+        2px dashed
+        rgba(255,208,0,.5);
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    background:
+        rgba(255,208,0,.05);
+}
+
+.foto-marco img {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        cover;
+
+    display:
+        none;
+}
+
+.foto-placeholder {
+
+    text-align:
+        center;
+
+    padding:
+        30px;
+
+    color:
+        rgba(255,255,255,.6);
+}
+
+.foto-placeholder div {
+
+    font-size:
+        70px;
+
+    margin-bottom:
+        15px;
+}
+
+.foto-texto h2 {
+
+    font-size:
+        50px;
+
+    color:
+        #ffd000;
+
+    margin-bottom:
+        20px;
+}
+
+.foto-texto p {
+
+    line-height:
+        1.8;
+
+    color:
+        rgba(255,255,255,.7);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+
+    min-height:
+        300px;
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    align-items:
+        center;
+
+    text-align:
+        center;
+
+    padding:
+        50px;
+
+    background:
+        rgba(0,0,0,.3);
+
+    border-top:
+        1px solid
+        rgba(255,208,0,.1);
+}
+
+.footer-flor {
+
+    font-size:
+        60px;
+
+    animation:
+        flotarLateral
+        3s infinite;
+}
+
+footer h2 {
+
+    margin:
+        20px;
+
+    color:
+        #ffd000;
+}
+
+footer p {
+
+    color:
+        rgba(255,255,255,.5);
+}
+
+
+/* =========================================================
+   BOTÓN MODO NOCHE
+========================================================= */
+
+.controles {
+
+    position:
+        fixed;
+
+    right:
+        20px;
+
+    bottom:
+        20px;
+
+    z-index:
+        500;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        10px;
+}
+
+.control {
+
+    width:
+        50px;
+
+    height:
+        50px;
+
+    border:
+        1px solid
+        rgba(255,208,0,.3);
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(20,15,0,.7);
+
+    backdrop-filter:
+        blur(10px);
+
+    color:
+        white;
+
+    cursor:
+        pointer;
+
+    font-size:
+        20px;
+
+    transition:
+        .3s;
+}
+
+.control:hover {
+
+    transform:
+        scale(1.15);
+
+    background:
+        #ffd000;
+
+    color:
+        #3b2800;
+}
+
+
+/* =========================================================
+   CORAZONES
+========================================================= */
+
+.corazon {
+
+    position:
+        fixed;
+
+    pointer-events:
+        none;
+
+    z-index:
+        999;
+
+    animation:
+        subirCorazon
+        2s ease
+        forwards;
+}
+
+@keyframes subirCorazon {
+
+    0% {
+
+        opacity:
+            1;
+
+        transform:
+            translateY(0)
+            scale(.5);
+    }
+
+    100% {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(-300px)
+            scale(1.5)
+            rotate(20deg);
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width: 800px) {
+
+    .btn-secundario {
+
+        margin-left:
+            0;
+
+        margin-top:
+            12px;
+    }
+
+    .flor-lateral {
+
+        font-size:
+            60px;
+
+        opacity:
+            .3;
+    }
+
+    .timeline::before {
+
+        left:
+            10px;
+    }
+
+    .evento {
+
+        width:
+            100%;
+
+        margin-left:
+            0 !important;
+
+        padding-left:
+            35px;
+
+        padding-right:
+            0;
+    }
+
+    .foto-seccion {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .contadores {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .carta-frente,
+    .carta-atras {
+
+        padding:
+            30px 20px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     LOADER
+===================================================== -->
+
+<div class="loader" id="loader">
+
+    <div class="loader-flor">
+        🌻
+    </div>
+
+    <p>
+        PREPARANDO ALGO ESPECIAL...
+    </p>
+
+</div>
+
+
+<!-- =====================================================
+     FONDO
+===================================================== -->
+
+<div id="fondo"></div>
+
+
+<!-- =====================================================
+     FLORES LATERALES
+===================================================== -->
+
+<div class="flor-lateral uno">🌻</div>
+
+<div class="flor-lateral dos">🌼</div>
+
+<div class="flor-lateral tres">🌻</div>
+
+<div class="flor-lateral cuatro">🌼</div>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero" id="inicio">
+
+    <div class="hero-contenido">
+
+        <div class="etiqueta">
+            21 DE SEPTIEMBRE
+        </div>
+
+        <h1>
+            FLORES<br>
+            AMARILLAS
+        </h1>
+
+        <h2>
+            Porque hay personas que merecen un jardín entero.
+        </h2>
+
+        <p class="hero-descripcion">
+
+            Esta no es solamente una página.
+
+            <br>
+
+            Es un pequeño recorrido lleno de flores,
+            recuerdos, sorpresas y momentos amarillos.
+
+        </p>
+
+        <button
+            class="btn btn-principal"
+            onclick="irJardin()">
+
+            🌻 ENTRAR AL JARDÍN
+
+        </button>
+
+        <button
+            class="btn btn-secundario"
+            onclick="crearCorazones(20)">
+
+            💛 LLUVIA DE AMOR
+
+        </button>
+
+    </div>
+
+
+    <div class="scroll">
+
+        ↓ DESLIZA PARA DESCUBRIR ↓
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     JARDÍN
+===================================================== -->
+
+<section
+    class="seccion"
+    id="jardin">
+
+    <div class="contenedor">
+
+        <div class="titulo-seccion">
+
+            <span>
+                PRIMERA PARADA
+            </span>
+
+            <h2>
+                Un jardín para ti 🌻
+            </h2>
+
+            <p>
+
+                Pasa el mouse sobre las flores.
+                Cada una guarda un pequeño mensaje.
+
+            </p>
+
+        </div>
+
+
+        <div class="jardin">
+
+            <div class="luna"></div>
+
+
+            <span
+                class="estrella"
+                style="left:10%;top:10%">
+                ✦
+            </span>
+
+            <span
+                class="estrella"
+                style="left:25%;top:20%">
+                ✧
+            </span>
+
+            <span
+                class="estrella"
+                style="left:45%;top:8%">
+                ✦
+            </span>
+
+            <span
+                class="estrella"
+                style="left:70%;top:18%">
+                ✧
+            </span>
+
+            <span
+                class="estrella"
+                style="left:85%;top:10%">
+                ✦
+            </span>
+
+
+            <div class="flores-jardin">
+
+
+                <div
+                    class="flor"
+                    onclick="mostrarMensaje(
+                    '🌻',
+                    'Una flor',
+                    'Porque incluso los días normales pueden volverse especiales.')">
+
+                    🌻
+
+                </div>
+
+
+                <div
+                    class="flor"
+                    onclick="mostrarMensaje(
+                    '💛',
+                    'Un detalle',
+                    'A veces un pequeño detalle puede decir muchísimo.')">
+
+                    🌻
+
+                </div>
+
+
+                <div
+                    class="flor"
+                    onclick="mostrarMensaje(
+                    '✨',
+                    'Una sonrisa',
+                    'Que nunca te falten motivos para sonreír.')">
+
+                    🌼
+
+                </div>
+
+
+                <div
+                    class="flor"
+                    onclick="mostrarMensaje(
+                    '🌻',
+                    'Felicidad',
+                    'Que cada nuevo día encuentre una razón para florecer.')">
+
+                    🌻
+
+                </div>
+
+
+                <div
+                    class="flor"
+                    onclick="mostrarMensaje(
+                    '💫',
+                    'Sueños',
+                    'Nunca dejes de perseguir aquello que te hace feliz.')">
+
+                    🌼
+
+                </div>
+
+
+                <div
+                    class="flor"
+                    onclick="mostrarMensaje(
+                    '💛',
+                    'Cariño',
+                    'Hay personas que simplemente hacen más bonito el mundo.')">
+
+                    🌻
+
+                </div>
+
+
+                <div
+                    class="flor"
+                    onclick="mostrarMensaje(
+                    '🌟',
+                    'Luz',
+                    'Que siempre encuentres luz incluso en los días difíciles.')">
+
+                    🌼
+
+                </div>
+
+
+                <div
+                    class="flor"
+                    onclick="mostrarMensaje(
+                    '🌻',
+                    'Recuerdos',
+                    'Los mejores recuerdos empiezan con pequeños momentos.')">
+
+                    🌻
+
+                </div>
+
+
+                <div
+                    class="flor"
+                    onclick="mostrarMensaje(
+                    '❤️',
+                    'Corazón',
+                    'Hay detalles que se quedan guardados en el corazón.')">
+
+                    🌼
+
+                </div>
+
+
+                <div
+                    class="flor"
+                    onclick="mostrarMensaje(
+                    '✨',
+                    'Especial',
+                    'No necesitas ser perfecta para ser una persona especial.')">
+
+                    🌻
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     MENSAJE FLOR
+===================================================== -->
+
+<div
+    class="mensaje-flor"
+    id="mensajeFlor">
+
+    <div
+        class="emoji"
+        id="mensajeEmoji">
+        🌻
+    </div>
+
+    <h3 id="mensajeTitulo">
+        Una flor
+    </h3>
+
+    <p id="mensajeTexto">
+        Mensaje
+    </p>
+
+    <button
+        class="cerrar"
+        onclick="cerrarMensaje()">
+
+        Cerrar
+
+    </button>
+
+</div>
+
+
+
+<!-- =====================================================
+     CARTA
+===================================================== -->
+
+<section
+    class="seccion"
+    id="carta">
+
+    <div class="contenedor">
+
+        <div class="titulo-seccion">
+
+            <span>
+                SEGUNDA PARADA
+            </span>
+
+            <h2>
+                Tengo algo que decirte 💌
+            </h2>
+
+            <p>
+                Haz clic en la carta.
+            </p>
+
+        </div>
+
+
+        <div class="carta-contenedor">
+
+            <div
+                class="carta"
+                id="cartaElemento"
+                onclick="abrirCarta()">
+
+
+                <div class="carta-frente">
+
+                    <div class="sobre">
+                        💌
+                    </div>
+
+                    <h3>
+                        Para alguien especial
+                    </h3>
+
+                    <p>
+                        Haz clic para abrir
+                    </p>
+
+                </div>
+
+
+                <div class="carta-atras">
+
+                    <h3>
+                        🌻 Para ti
+                    </h3>
+
+                    <p>
+
+                        Quizás una flor parezca
+                        solamente una flor.
+
+                        <br><br>
+
+                        Pero cuando alguien la entrega
+                        pensando en ti, se convierte
+                        en mucho más.
+
+                        <br><br>
+
+                        Por eso hoy quería regalarte
+                        un pequeño pedacito de alegría.
+
+                        <br><br>
+
+                        Que nunca te falten motivos
+                        para sonreír, personas que te
+                        quieran y sueños que perseguir.
+
+                        <br><br>
+
+                        <strong>
+                            Feliz Día de las Flores Amarillas 💛
+                        </strong>
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     HISTORIA
+===================================================== -->
+
+<section
+    class="seccion"
+    id="historia">
+
+    <div class="contenedor">
+
+        <div class="titulo-seccion">
+
+            <span>
+                TERCERA PARADA
+            </span>
+
+            <h2>
+                Pequeños momentos
+            </h2>
+
+            <p>
+                Porque las cosas bonitas empiezan con pequeños detalles.
+            </p>
+
+        </div>
+
+
+        <div class="timeline">
+
+
+            <div class="evento">
+
+                <div class="evento-contenido">
+
+                    <h3>
+                        🌱 Todo comienza
+                    </h3>
+
+                    <p>
+                        Una pequeña semilla puede convertirse
+                        en algo increíble.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="evento">
+
+                <div class="evento-contenido">
+
+                    <h3>
+                        🌻 Florece
+                    </h3>
+
+                    <p>
+                        Con tiempo, cariño y paciencia,
+                        aparecen cosas maravillosas.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="evento">
+
+                <div class="evento-contenido">
+
+                    <h3>
+                        ✨ Un momento
+                    </h3>
+
+                    <p>
+                        Algunas personas llegan a nuestra
+                        vida y hacen que todo tenga
+                        un poquito más de color.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="evento">
+
+                <div class="evento-contenido">
+
+                    <h3>
+                        💛 Un recuerdo
+                    </h3>
+
+                    <p>
+                        Y algunos momentos pequeños
+                        terminan convirtiéndose
+                        en grandes recuerdos.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FRASES
+===================================================== -->
+
+<section
+    class="seccion">
+
+    <div class="contenedor">
+
+        <div class="titulo-seccion">
+
+            <span>
+                CUARTA PARADA
+            </span>
+
+            <h2>
+                Una frase para ti
+            </h2>
+
+        </div>
+
+
+        <div class="frase-box">
+
+            <div
+                class="frase"
+                id="frase">
+
+                "Que siempre encuentres
+                razones para florecer."
+
+            </div>
+
+            <div
+                class="frase autor"
+                id="autor">
+
+                🌻
+
+            </div>
+
+            <br>
+
+            <button
+                class="btn btn-principal"
+                onclick="cambiarFrase()">
+
+                ✨ OTRA FRASE
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CONTADORES
+===================================================== -->
+
+<section
+    class="seccion">
+
+    <div class="contenedor">
+
+        <div class="titulo-seccion">
+
+            <span>
+                DATOS IMPORTANTES
+            </span>
+
+            <h2>
+                Una pequeña locura amarilla
+            </h2>
+
+        </div>
+
+
+        <div class="contadores">
+
+
+            <div class="contador">
+
+                <div
+                    class="numero"
+                    id="contadorFlores">
+
+                    0
+
+                </div>
+
+                <p>
+                    Flores creadas
+                </p>
+
+            </div>
+
+
+            <div class="contador">
+
+                <div
+                    class="numero"
+                    id="contadorCorazones">
+
+                    0
+
+                </div>
+
+                <p>
+                    Corazones enviados
+                </p>
+
+            </div>
+
+
+            <div class="contador">
+
+                <div
+                    class="numero"
+                    id="contadorSonrisas">
+
+                    0
+
+                </div>
+
+                <p>
+                    Sonrisas imaginadas
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CAJA SORPRESA
+===================================================== -->
+
+<section
+    class="seccion">
+
+    <div
+        class="contenedor sorpresa">
+
+        <div class="titulo-seccion">
+
+            <span>
+                ÚLTIMA SORPRESA
+            </span>
+
+            <h2>
+                ¿Qué habrá aquí? 🎁
+            </h2>
+
+            <p>
+                Haz clic en la caja.
+            </p>
+
+        </div>
+
+
+        <div
+            class="caja"
+            id="caja"
+            onclick="abrirCaja()">
+
+            <div class="caja-base"></div>
+
+            <div class="caja-lazo"></div>
+
+            <div class="caja-tapa"></div>
+
+        </div>
+
+
+        <div
+            class="mensaje-sorpresa"
+            id="mensajeSorpresa">
+
+            🌻✨
+
+            <br><br>
+
+            Si llegaste hasta aquí...
+
+            <br>
+
+            entonces te ganaste
+
+            <br>
+
+            <strong>
+                una lluvia de flores amarillas 💛
+            </strong>
+
+            <br><br>
+
+            <button
+                class="btn btn-principal"
+                onclick="lluviaFinal()">
+
+                🌻 ¡LLUVIA DE FLORES!
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOTO
+===================================================== -->
+
+<section
+    class="seccion">
+
+    <div
+        class="contenedor foto-seccion">
+
+
+        <div class="foto-marco">
+
+            <div
+                class="foto-placeholder"
+                id="fotoPlaceholder">
+
+            </div>
+
+            <img
+                id="foto"
+                src="foto.jpg"
+                alt="Foto especial"
+                style="display: block;">
+
+        </div>
+
+
+        <div class="foto-texto">
+
+            <span
+                style="color:#ffd000;letter-spacing:3px">
+
+                UN ESPACIO PARA TI
+
+            </span>
+
+            <h2>
+                Un recuerdo
+            </h2>
+
+            <p>
+
+                “No necesito un día especial
+                para recordarte cuánto significas para mí;
+                contigo, cada día se siente especial.”
+                "TE AMO MUCHO AYLEEN"
+
+                <br><br>
+
+                “Si pudiera elegir un 
+                lugar donde estar, 
+                elegiría siempre a tu lado.”
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FINAL
+===================================================== -->
+
+<section
+    class="seccion"
+    id="final">
+
+    <div
+        class="contenedor"
+        style="text-align:center">
+
+        <div
+            style="
+            font-size:120px;
+            animation:flotarLateral 4s infinite;
+            ">
+
+            🌻
+
+        </div>
+
+        <h2
+            style="
+            font-size:clamp(40px,8vw,90px);
+            color:#ffd000;
+            margin:20px 0;
+            ">
+
+            Que nunca<br>
+            dejes de florecer.
+
+        </h2>
+
+        <p
+            style="
+            max-width:600px;
+            margin:auto;
+            color:rgba(255,255,255,.65);
+            line-height:1.8;
+            ">
+
+            Porque algunas personas merecen
+            algo más que una flor.
+
+            <br>
+
+            Merecen que les recuerden
+            lo especiales que son.
+
+        </p>
+
+
+        <br><br>
+
+
+        <button
+            class="btn btn-principal"
+            onclick="volverInicio()">
+
+            🌻 VOLVER AL INICIO
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div>
+
+        <div class="footer-flor">
+            🌻
+        </div>
+
+        <h2>
+            Feliz Día de las Flores Amarillas
+        </h2>
+
+        <p>
+            Hecho con 💛, flores y un poquito de código.
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =====================================================
+     CONTROLES
+===================================================== -->
+
+<div class="controles">
+
+    <button
+        class="control"
+        onclick="modoNoche()"
+        title="Cambiar ambiente">
+
+        🌙
+
+    </button>
+
+
+    <button
+        class="control"
+        onclick="lluviaPetalos()"
+        title="Lluvia de pétalos">
+
+        🌻
+
+    </button>
+
+
+    <button
+        class="control"
+        onclick="crearCorazones(15)"
+        title="Corazones">
+
+        💛
+
+    </button>
+
+</div>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+let floresCreadas = 0;
+
+let corazonesCreados = 0;
+
+let sonrisas = 0;
+
+
+/* =========================================================
+   LOADER
+========================================================= */
+
+window.addEventListener(
+    "load",
+    () => {
+
+        setTimeout(
+            () => {
+
+                document
+                    .getElementById("loader")
+                    .classList
+                    .add("oculto");
+
+            },
+            1800
+        );
+
+    }
+);
+
+
+/* =========================================================
+   PARTÍCULAS
+========================================================= */
+
+function crearParticula() {
+
+    const p =
+        document.createElement("div");
+
+    p.className =
+        "particula";
+
+    p.style.left =
+        Math.random() * 100 + "vw";
+
+    p.style.animationDuration =
+        (5 + Math.random() * 8) + "s";
+
+    p.style.animationDelay =
+        Math.random() * 5 + "s";
+
+    p.style.opacity =
+        Math.random();
+
+    const size =
+        2 + Math.random() * 5;
+
+    p.style.width =
+        size + "px";
+
+    p.style.height =
+        size + "px";
+
+    document.body.appendChild(p);
+
+    setTimeout(
+        () => p.remove(),
+        15000
+    );
+
+}
+
+for (
+    let i = 0;
+    i < 60;
+    i++
+) {
+
+    crearParticula();
+
+}
+
+
+/* =========================================================
+   PÉTALO INDIVIDUAL
+========================================================= */
+
+function crearPetalo() {
+
+    const petalo =
+        document.createElement("div");
+
+    petalo.className =
+        "petalo";
+
+    const flores = [
+        "🌻",
+        "🌼",
+        "💛",
+        "✨"
+    ];
+
+    petalo.innerHTML =
+        flores[
+            Math.floor(
+                Math.random()
+                * flores.length
+            )
+        ];
+
+    petalo.style.left =
+        Math.random() * 100 + "vw";
+
+    petalo.style.fontSize =
+        (15 + Math.random() * 35)
+        + "px";
+
+    petalo.style.animationDuration =
+        (4 + Math.random() * 6)
+        + "s";
+
+    document.body.appendChild(
+        petalo
+    );
+
+    setTimeout(
+        () => {
+
+            petalo.remove();
+
+        },
+        11000
+    );
+
+    floresCreadas++;
+
+    actualizarContador();
+
+}
+
+
+/* =========================================================
+   LLUVIA DE PÉTALOS
+========================================================= */
+
+function lluviaPetalos() {
+
+    for (
+        let i = 0;
+        i < 35;
+        i++
+    ) {
+
+        setTimeout(
+            crearPetalo,
+            i * 100
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   LLUVIA FINAL
+========================================================= */
+
+function lluviaFinal() {
+
+    for (
+        let i = 0;
+        i < 120;
+        i++
+    ) {
+
+        setTimeout(
+            crearPetalo,
+            i * 35
+        );
+
+    }
+
+    crearCorazones(60);
+
+}
+
+
+/* =========================================================
+   CORAZONES
+========================================================= */
+
+function crearCorazones(cantidad = 10) {
+
+    const emojis = [
+        "💛",
+        "❤️",
+        "💖",
+        "✨",
+        "🌻"
+    ];
+
+    for (
+        let i = 0;
+        i < cantidad;
+        i++
+    ) {
+
+        setTimeout(
+            () => {
+
+                const corazon =
+                    document.createElement("div");
+
+                corazon.className =
+                    "corazon";
+
+                corazon.innerHTML =
+                    emojis[
+                        Math.floor(
+                            Math.random()
+                            * emojis.length
+                        )
+                    ];
+
+                corazon.style.left =
+                    Math.random()
+                    * 100
+                    + "vw";
+
+                corazon.style.top =
+                    70
+                    + Math.random()
+                    * 25
+                    + "vh";
+
+                corazon.style.fontSize =
+                    (15 + Math.random() * 35)
+                    + "px";
+
+                document.body.appendChild(
+                    corazon
+                );
+
+                setTimeout(
+                    () => corazon.remove(),
+                    2200
+                );
+
+                corazonesCreados++;
+
+                actualizarContador();
+
+            },
+            i * 80
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   MENSAJE DE FLOR
+========================================================= */
+
+function mostrarMensaje(
+    emoji,
+    titulo,
+    texto
+) {
+
+    document
+        .getElementById(
+            "mensajeEmoji"
+        )
+        .innerHTML =
+        emoji;
+
+    document
+        .getElementById(
+            "mensajeTitulo"
+        )
+        .innerHTML =
+        titulo;
+
+    document
+        .getElementById(
+            "mensajeTexto"
+        )
+        .innerHTML =
+        texto;
+
+    document
+        .getElementById(
+            "mensajeFlor"
+        )
+        .classList
+        .add("activo");
+
+    sonrisas++;
+
+    actualizarContador();
+
+}
+
+
+function cerrarMensaje() {
+
+    document
+        .getElementById(
+            "mensajeFlor"
+        )
+        .classList
+        .remove("activo");
+
+}
+
+
+/* =========================================================
+   CARTA
+========================================================= */
+
+function abrirCarta() {
+
+    document
+        .getElementById(
+            "cartaElemento"
+        )
+        .classList
+        .toggle("abierta");
+
+}
+
+
+/* =========================================================
+   CAJA
+========================================================= */
+
+function abrirCaja() {
+
+    const caja =
+        document.getElementById(
+            "caja"
+        );
+
+    const mensaje =
+        document.getElementById(
+            "mensajeSorpresa"
+        );
+
+    caja.classList.toggle(
+        "abierta"
+    );
+
+    mensaje.classList.toggle(
+        "mostrar"
+    );
+
+}
+
+
+/* =========================================================
+   FRASES
+========================================================= */
+
+const frases = [
+
+    [
+        "Que siempre encuentres razones para florecer.",
+        "🌻"
+    ],
+
+    [
+        "Algunas personas son como flores: hacen más bonito cualquier lugar.",
+        "💛"
+    ],
+
+    [
+        "Nunca olvides lo mucho que puedes iluminar un día.",
+        "✨"
+    ],
+
+    [
+        "Que la vida te regale momentos tan bonitos como un campo de girasoles.",
+        "🌻"
+    ],
+
+    [
+        "Sonríe. Quizás hoy alguien necesitaba ver esa sonrisa.",
+        "😊"
+    ],
+
+    [
+        "Hay detalles pequeños que terminan convirtiéndose en grandes recuerdos.",
+        "💛"
+    ],
+
+    [
+        "Florecer también significa seguir adelante.",
+        "🌱"
+    ],
+
+    [
+        "Que nunca te falten sueños, cariño y motivos para sonreír.",
+        "✨"
+    ],
+
+    [
+        "Una flor puede marchitarse, pero un buen recuerdo puede durar para siempre.",
+        "🌻"
+    ],
+
+    [
+        "Hoy el amarillo tiene una razón especial para brillar.",
+        "💛"
+    ]
+
+];
+
+
+let fraseActual = 0;
+
+
+function cambiarFrase() {
+
+    fraseActual++;
+
+    if (
+        fraseActual
+        >= frases.length
+    ) {
+
+        fraseActual = 0;
+
+    }
+
+    const frase =
+        document.getElementById(
+            "frase"
+        );
+
+    const autor =
+        document.getElementById(
+            "autor"
+        );
+
+    frase.style.opacity = 0;
+
+    setTimeout(
+        () => {
+
+            frase.innerHTML =
+                `"${frases[fraseActual][0]}"`;
+
+            autor.innerHTML =
+                frases[fraseActual][1];
+
+            frase.style.opacity = 1;
+
+        },
+        300
+    );
+
+}
+
+
+/* =========================================================
+   CONTADORES
+========================================================= */
+
+function actualizarContador() {
+
+    document
+        .getElementById(
+            "contadorFlores"
+        )
+        .innerHTML =
+        floresCreadas;
+
+    document
+        .getElementById(
+            "contadorCorazones"
+        )
+        .innerHTML =
+        corazonesCreados;
+
+    document
+        .getElementById(
+            "contadorSonrisas"
+        )
+        .innerHTML =
+        sonrisas;
+
+}
+
+
+/* =========================================================
+   MODO NOCHE
+========================================================= */
+
+function modoNoche() {
+
+    document.body
+        .classList
+        .toggle(
+            "modo-noche"
+        );
+
+}
+
+
+/* =========================================================
+   IR AL JARDÍN
+========================================================= */
+
+function irJardin() {
+
+    document
+        .getElementById(
+            "jardin"
+        )
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+
+    setTimeout(
+        lluviaPetalos,
+        700
+    );
+
+}
+
+
+/* =========================================================
+   VOLVER
+========================================================= */
+
+function volverInicio() {
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+    setTimeout(
+        () => {
+            crearCorazones(25);
+        },
+        700
+    );
+
+}
+
+
+/* =========================================================
+   MOVIMIENTO DEL MOUSE
+========================================================= */
+
+document.addEventListener(
+    "mousemove",
+    (e) => {
+
+        const x =
+            (e.clientX /
+            window.innerWidth -
+            .5);
+
+        const y =
+            (e.clientY /
+            window.innerHeight -
+            .5);
+
+
+        document
+            .querySelectorAll(
+                ".flor-lateral"
+            )
+            .forEach(
+                (flor, index) => {
+
+                    const fuerza =
+                        (index + 1)
+                        * 8;
+
+                    flor.style.transform =
+                        `translate(
+                        ${x * fuerza}px,
+                        ${y * fuerza}px
+                        )`;
+
+                }
+            );
+
+    }
+);
+
+
+/* =========================================================
+   LLUVIA AUTOMÁTICA SUAVE
+========================================================= */
+
+setInterval(
+    () => {
+
+        if (
+            Math.random()
+            > .45
+        ) {
+
+            crearPetalo();
+
+        }
+
+    },
+    1800
+);
+
+
+/* =========================================================
+   CLIC EN CUALQUIER PARTE
+========================================================= */
+
+document.addEventListener(
+    "click",
+    (e) => {
+
+        if (
+            e.target.closest(
+                "button"
+            ) ||
+            e.target.closest(
+                ".flor"
+            ) ||
+            e.target.closest(
+                ".carta"
+            ) ||
+            e.target.closest(
+                ".caja"
+            )
+        ) {
+
+            return;
+
+        }
+
+        const estrella =
+            document.createElement(
+                "div"
+            );
+
+        estrella.innerHTML =
+            "✨";
+
+        estrella.style.position =
+            "fixed";
+
+        estrella.style.left =
+            e.clientX + "px";
+
+        estrella.style.top =
+            e.clientY + "px";
+
+        estrella.style.pointerEvents =
+            "none";
+
+        estrella.style.zIndex =
+            "9999";
+
+        estrella.style.fontSize =
+            "25px";
+
+        estrella.style.animation =
+            "subirCorazon 1s ease forwards";
+
+        document.body.appendChild(
+            estrella
+        );
+
+        setTimeout(
+            () => estrella.remove(),
+            1000
+        );
+
+    }
+);
+
+
+/* =========================================================
+   ESCAPE PARA CERRAR
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    (e) => {
+
+        if (
+            e.key === "Escape"
+        ) {
+
+            cerrarMensaje();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   INICIAR
+========================================================= */
+
+actualizarContador();
+
+
+</script>
+
+
+</body>
+
+</html>
