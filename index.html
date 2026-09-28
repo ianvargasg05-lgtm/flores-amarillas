@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LATIDO.EXE — DÍA 01</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#010207;
+}
+
+body{
+    font-family:'Rajdhani',sans-serif;
+}
+
+canvas{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+}
+
+/* INTERFAZ */
+
+.ui{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    color:white;
+}
+
+/* ESQUINAS */
+
+.corner{
+    position:absolute;
+    width:85px;
+    height:85px;
+    opacity:.5;
+}
+
+.corner::before,
+.corner::after{
+    content:"";
+    position:absolute;
+    background:#53efff;
+    box-shadow:
+        0 0 8px #00eaff,
+        0 0 20px rgba(0,220,255,.5);
+}
+
+.corner::before{
+    width:65px;
+    height:1px;
+}
+
+.corner::after{
+    width:1px;
+    height:65px;
+}
+
+.tl{
+    top:25px;
+    left:25px;
+}
+
+.tr{
+    top:25px;
+    right:25px;
+    transform:rotate(90deg);
+}
+
+.bl{
+    bottom:25px;
+    left:25px;
+    transform:rotate(-90deg);
+}
+
+.br{
+    bottom:25px;
+    right:25px;
+    transform:rotate(180deg);
+}
+
+/* LATIDO.EXE ARRIBA A LA DERECHA */
+
+.header{
+    position:fixed;
+    top:30px;
+    right:35px;
+    left:auto;
+    width:auto;
+    margin:0;
+    padding:0;
+    text-align:right;
+    z-index:10;
+}
+
+.logo{
+    font-family:'Orbitron',sans-serif;
+    font-size:20px;
+    font-weight:700;
+    letter-spacing:5px;
+    color:#ffffff;
+
+    text-shadow:
+        0 0 5px #ffffff,
+        0 0 12px #00eaff,
+        0 0 30px rgba(0,220,255,.8);
+}
+
+.status{
+    margin-top:8px;
+    font-family:'Orbitron',sans-serif;
+    font-size:7px;
+    letter-spacing:3px;
+    color:#64808a;
+}
+
+/* DÍA 01 */
+
+.day{
+    position:fixed;
+    top:105px;
+    right:53px;
+    z-index:10;
+    text-align:right;
+}
+
+.day-title{
+    font-family:'Orbitron',sans-serif;
+    font-size:7px;
+    letter-spacing:4px;
+    color:#526b76;
+    margin-bottom:7px;
+}
+
+.day-number{
+    font-family:'Orbitron',sans-serif;
+    font-size:22px;
+    font-weight:600;
+    letter-spacing:4px;
+    color:#70f5ff;
+
+    text-shadow:
+        0 0 8px #00eaff,
+        0 0 22px rgba(0,220,255,.7),
+        0 0 40px rgba(0,220,255,.3);
+}
+
+.day-line{
+    width:95px;
+    height:1px;
+    margin-top:9px;
+    margin-left:auto;
+
+    background:#65f5ff;
+
+    box-shadow:
+        0 0 8px #00eaff,
+        0 0 20px #00eaff;
+}
+
+/* FRASE CENTRAL */
+
+.message{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:min(1050px,82%);
+    text-align:center;
+    z-index:5;
+}
+
+.phrase{
+    font-family:'Rajdhani',sans-serif;
+    font-size:clamp(40px,5.5vw,82px);
+    font-weight:500;
+    line-height:1.05;
+    letter-spacing:1px;
+    color:#f8feff;
+
+    text-shadow:
+        0 2px 0 rgba(0,100,130,.5),
+        0 0 5px rgba(255,255,255,.9),
+        0 0 15px rgba(100,240,255,.65),
+        0 0 35px rgba(0,210,255,.35),
+        0 0 70px rgba(0,170,255,.2);
+
+    animation:phraseGlow 4s ease-in-out infinite;
+}
+
+@keyframes phraseGlow{
+
+    0%{
+        text-shadow:
+            0 0 5px rgba(255,255,255,.8),
+            0 0 15px rgba(100,240,255,.55),
+            0 0 35px rgba(0,210,255,.3);
+    }
+
+    50%{
+        text-shadow:
+            0 0 8px #fff,
+            0 0 22px #65f5ff,
+            0 0 50px rgba(0,210,255,.55),
+            0 0 80px rgba(0,150,255,.2);
+    }
+
+    100%{
+        text-shadow:
+            0 0 5px rgba(255,255,255,.8),
+            0 0 15px rgba(100,240,255,.55),
+            0 0 35px rgba(0,210,255,.3);
+    }
+}
+
+.highlight{
+    font-weight:700;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff 0%,
+            #9cfaff 45%,
+            #4defff 70%,
+            #ffffff 100%
+        );
+
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    filter:
+        drop-shadow(0 0 7px rgba(90,240,255,.9))
+        drop-shadow(0 0 25px rgba(0,220,255,.6));
+}
+
+.line{
+    position:relative;
+    width:220px;
+    height:1px;
+    margin:38px auto 24px;
+
+    background:#65f5ff;
+
+    box-shadow:
+        0 0 7px #00eaff,
+        0 0 18px #00eaff,
+        0 0 35px rgba(0,220,255,.5);
+}
+
+.line::before,
+.line::after{
+    content:"";
+    position:absolute;
+    top:-2px;
+    width:5px;
+    height:5px;
+    border-radius:50%;
+    background:#ffffff;
+
+    box-shadow:
+        0 0 8px #00eaff,
+        0 0 15px #00eaff;
+}
+
+.line::before{
+    left:0;
+}
+
+.line::after{
+    right:0;
+}
+
+.sub{
+    font-family:'Orbitron',sans-serif;
+    font-size:8px;
+    letter-spacing:5px;
+    color:#647d87;
+}
+
+/* HUD */
+
+.hud{
+    position:absolute;
+    bottom:35px;
+    left:45px;
+
+    font-family:'Orbitron',sans-serif;
+    font-size:7px;
+    letter-spacing:2px;
+    color:#506974;
+    line-height:2;
+}
+
+.hud span{
+    color:#6cf5ff;
+}
+
+.right{
+    position:absolute;
+    bottom:35px;
+    right:45px;
+
+    text-align:right;
+
+    font-family:'Orbitron',sans-serif;
+    font-size:7px;
+    letter-spacing:2px;
+    color:#506974;
+    line-height:2;
+}
+
+/* EFECTOS */
+
+.scan{
+    position:absolute;
+    inset:0;
+
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            rgba(255,255,255,.012) 0px,
+            rgba(255,255,255,.012) 1px,
+            transparent 1px,
+            transparent 5px
+        );
+
+    opacity:.25;
+}
+
+.vignette{
+    position:absolute;
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            transparent 15%,
+            rgba(0,0,0,.2) 55%,
+            rgba(0,0,0,.9) 100%
+        );
+}
+
+/* MÓVIL */
+
+@media(max-width:700px){
+
+    .header{
+        top:25px;
+        right:25px;
+    }
+
+    .day{
+        top:88px;
+        right:25px;
+    }
+
+    .logo{
+        font-size:14px;
+    }
+
+    .day-number{
+        font-size:17px;
+    }
+
+    .message{
+        width:88%;
+    }
+
+    .phrase{
+        font-size:clamp(32px,9vw,52px);
+        line-height:1.12;
+    }
+
+    .sub{
+        font-size:6px;
+        letter-spacing:3px;
+    }
+
+    .hud{
+        left:20px;
+        bottom:20px;
+        font-size:6px;
+    }
+
+    .right{
+        right:20px;
+        bottom:20px;
+        font-size:6px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="universe"></canvas>
+
+<div class="ui">
+
+    <div class="corner tl"></div>
+    <div class="corner tr"></div>
+    <div class="corner bl"></div>
+    <div class="corner br"></div>
+
+    <!-- LATIDO.EXE -->
+    <div class="header">
+        <div class="logo">LATIDO.EXE</div>
+        <div class="status">DIGITAL UNIVERSE // ONLINE</div>
+    </div>
+
+    <!-- DÍA 01 -->
+    <div class="day">
+        <div class="day-title">TRANSMISSION</div>
+        <div class="day-number">DÍA 01</div>
+        <div class="day-line"></div>
+    </div>
+
+    <!-- FRASE -->
+    <div class="message">
+
+        <div class="phrase">
+            "No tienes que tener todo resuelto para seguir
+            <span class="highlight">avanzando"</span>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="sub">
+            KEEP MOVING // KEEP BECOMING
+        </div>
+
+    </div>
+
+    <!-- HUD -->
+    <div class="hud">
+
+        <div>
+            COORDINATES
+            <span id="coords">000.00 / 000.00</span>
+        </div>    
+
+        <div>
+            STARS
+            <span>0900</span>
+        </div>
+
+        <div>
+            VELOCITY
+            <span>∞</span>
+        </div>
+
+        <div>
+            STATUS
+            <span>EXPLORING</span>
+        </div>
+
+    </div>
+
+    <div class="right">
+
+        <div>UNIVERSE_01</div>
+        <div>NEURAL SPACE</div>
+        <div>LATIDO://ACTIVE</div>
+
+    </div>
+
+    <div class="scan"></div>
+    <div class="vignette"></div>
+
+</div>
+
+<script>
+
+const canvas = document.getElementById("universe");
+const ctx = canvas.getContext("2d");
+
+let W, H;
+
+let stars = [];
+let particles = [];
+let planets = [];
+let codeParticles = [];
+
+let targetX = 0;
+let targetY = 0;
+
+let rotation = 0;
+let time = 0;
+
+
+/* RESIZE */
+
+function resize(){
+
+    W = window.innerWidth;
+    H = window.innerHeight;
+
+    const dpr = Math.min(window.devicePixelRatio,2);
+
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+
+    canvas.style.width = W + "px";
+    canvas.style.height = H + "px";
+
+    ctx.setTransform(
+        dpr,0,0,dpr,0,0
+    );
+}
+
+window.addEventListener("resize",resize);
+resize();
+
+
+/* ESTRELLAS */
+
+for(let i=0;i<900;i++){
+
+    stars.push({
+
+        x:Math.random(),
+        y:Math.random(),
+        z:Math.random(),
+
+        size:
+            Math.random()*1.6+.2,
+
+        twinkle:
+            Math.random()*Math.PI*2
+
+    });
+
+}
+
+
+/* GALAXIA */
+
+for(let i=0;i<700;i++){
+
+    particles.push({
+
+        angle:
+            Math.random()*Math.PI*2,
+
+        radius:
+            Math.pow(Math.random(),.7)*520,
+
+        y:
+            (Math.random()-.5)*120,
+
+        size:
+            Math.random()*1.7+.2,
+
+        speed:
+            (Math.random()*.001+.0003) *
+            (Math.random()<.5?-1:1),
+
+        alpha:
+            Math.random()*.7+.2
+
+    });
+
+}
+
+
+/* PLANETAS */
+
+planets = [
+
+    {
+        x:.14,
+        y:.24,
+        r:46,
+        glow:85
+    },
+
+    {
+        x:.84,
+        y:.73,
+        r:72,
+        glow:120
+    },
+
+    {
+        x:.73,
+        y:.17,
+        r:21,
+        glow:45
+    }
+
+];
+
+
+/* CÓDIGO FLOTANTE */
+
+const codeWords = [
+
+    "0101",
+    "001",
+    "LIFE()",
+    "RUN",
+    "VOID",
+    "SYSTEM",
+    "MEMORY",
+    "GROW",
+    "MOVE",
+    "NEXT",
+    "CREATE",
+    "RETRY",
+    "FUTURE",
+    "∞"
+
+];
+
+for(let i=0;i<90;i++){
+
+    codeParticles.push({
+
+        x:Math.random()*W,
+        y:Math.random()*H,
+
+        speed:
+            Math.random()*.25+.05,
+
+        depth:
+            Math.random(),
+
+        text:
+            codeWords[
+                Math.floor(
+                    Math.random()*codeWords.length
+                )
+            ],
+
+        alpha:
+            Math.random()*.35+.1
+
+    });
+
+}
+
+
+/* ESTRELLAS */
+
+function drawStars(){
+
+    for(const s of stars){
+
+        s.twinkle += .02;
+
+        const alpha =
+            .35 +
+            Math.sin(s.twinkle)*.3;
+
+        let x = s.x * W;
+        let y = s.y * H;
+
+        x += targetX*s.z*20;
+        y += targetY*s.z*20;
+
+        ctx.beginPath();
+
+        ctx.fillStyle =
+            `rgba(190,240,255,${alpha})`;
+
+        ctx.arc(
+            x,
+            y,
+            s.size,
+            0,
+            Math.PI*2
+        );
+
+        ctx.fill();
+
+    }
+
+}
+
+
+/* NEBULOSA */
+
+function drawNebula(){
+
+    const gradient =
+        ctx.createRadialGradient(
+            W/2,
+            H/2,
+            0,
+            W/2,
+            H/2,
+            Math.min(W,H)*.7
+        );
+
+    gradient.addColorStop(
+        0,
+        "rgba(0,190,255,.12)"
+    );
+
+    gradient.addColorStop(
+        .3,
+        "rgba(30,60,255,.065)"
+    );
+
+    gradient.addColorStop(
+        .6,
+        "rgba(150,30,255,.035)"
+    );
+
+    gradient.addColorStop(
+        1,
+        "transparent"
+    );
+
+    ctx.fillStyle = gradient;
+
+    ctx.fillRect(
+        0,
+        0,
+        W,
+        H
+    );
+
+}
+
+
+/* GALAXIA */
+
+function drawGalaxy(){
+
+    const cx = W/2;
+    const cy = H/2;
+
+    ctx.save();
+
+    ctx.translate(cx,cy);
+
+    ctx.rotate(rotation*.05);
+
+    for(const p of particles){
+
+        p.angle += p.speed;
+
+        const x =
+            Math.cos(p.angle)*p.radius;
+
+        const y =
+            Math.sin(p.angle)*
+            p.radius*.35 +
+            p.y;
+
+        const depth =
+            (Math.sin(p.angle)+1)/2;
+
+        const px =
+            x+targetX*30*depth;
+
+        const py =
+            y+targetY*30*depth;
+
+        ctx.beginPath();
+
+        ctx.fillStyle =
+            `rgba(110,230,255,${p.alpha})`;
+
+        ctx.arc(
+            px,
+            py,
+            p.size,
+            0,
+            Math.PI*2
+        );
+
+        ctx.fill();
+
+    }
+
+    const core =
+        ctx.createRadialGradient(
+            0,0,0,
+            0,0,180
+        );
+
+    core.addColorStop(
+        0,
+        "rgba(255,255,255,.2)"
+    );
+
+    core.addColorStop(
+        .2,
+        "rgba(60,220,255,.12)"
+    );
+
+    core.addColorStop(
+        1,
+        "transparent"
+    );
+
+    ctx.fillStyle = core;
+
+    ctx.beginPath();
+
+    ctx.arc(
+        0,
+        0,
+        180,
+        0,
+        Math.PI*2
+    );
+
+    ctx.fill();
+
+    ctx.restore();
+
+}
+
+
+/* PLANETAS */
+
+function drawPlanet(p){
+
+    const x =
+        p.x*W +
+        targetX*40;
+
+    const y =
+        p.y*H +
+        targetY*40;
+
+
+    const glow =
+        ctx.createRadialGradient(
+            x,y,0,
+            x,y,p.glow
+        );
+
+    glow.addColorStop(
+        0,
+        "rgba(70,220,255,.18)"
+    );
+
+    glow.addColorStop(
+        .5,
+        "rgba(40,90,255,.06)"
+    );
+
+    glow.addColorStop(
+        1,
+        "transparent"
+    );
+
+    ctx.fillStyle = glow;
+
+    ctx.beginPath();
+
+    ctx.arc(
+        x,
+        y,
+        p.glow,
+        0,
+        Math.PI*2
+    );
+
+    ctx.fill();
+
+
+    const planet =
+        ctx.createRadialGradient(
+            x-p.r*.3,
+            y-p.r*.3,
+            1,
+            x,
+            y,
+            p.r
+        );
+
+    planet.addColorStop(
+        0,
+        "#9df5ff"
+    );
+
+    planet.addColorStop(
+        .3,
+        "#285ba8"
+    );
+
+    planet.addColorStop(
+        .75,
+        "#08142d"
+    );
+
+    planet.addColorStop(
+        1,
+        "#01030a"
+    );
+
+    ctx.fillStyle = planet;
+
+    ctx.beginPath();
+
+    ctx.arc(
+        x,
+        y,
+        p.r,
+        0,
+        Math.PI*2
+    );
+
+    ctx.fill();
+
+
+    ctx.beginPath();
+
+    ctx.ellipse(
+        x,
+        y,
+        p.r*1.5,
+        p.r*.35,
+        -.25,
+        0,
+        Math.PI*2
+    );
+
+    ctx.strokeStyle =
+        "rgba(100,235,255,.16)";
+
+    ctx.lineWidth = 1;
+
+    ctx.stroke();
+
+}
+
+
+/* ÓRBITAS */
+
+function drawOrbits(){
+
+    const cx = W/2;
+    const cy = H/2;
+
+    ctx.save();
+
+    ctx.translate(cx,cy);
+
+    ctx.rotate(rotation*.02);
+
+    for(let i=0;i<4;i++){
+
+        ctx.beginPath();
+
+        ctx.ellipse(
+            0,
+            0,
+            210+i*75,
+            55+i*18,
+            i*.25,
+            0,
+            Math.PI*2
+        );
+
+        ctx.strokeStyle =
+            "rgba(70,220,255,.05)";
+
+        ctx.lineWidth = 1;
+
+        ctx.stroke();
+
+    }
+
+    ctx.restore();
+
+}
+
+
+/* CÓDIGO */
+
+function drawCode(){
+
+    ctx.font = "9px monospace";
+
+    for(const c of codeParticles){
+
+        c.y -= c.speed;
+
+        if(c.y < -20){
+            c.y = H+20;
+        }
+
+        const x =
+            c.x+
+            targetX*c.depth*30;
+
+        const y =
+            c.y+
+            targetY*c.depth*30;
+
+        ctx.fillStyle =
+            `rgba(90,235,255,${c.alpha})`;
+
+        ctx.fillText(
+            c.text,
+            x,
+            y
+        );
+
+    }
+
+}
+
+
+/* CONEXIONES */
+
+function drawConnections(){
+
+    const cx = W/2;
+    const cy = H/2;
+
+    for(let i=0;i<18;i++){
+
+        const angle =
+            time*.0002+
+            i*Math.PI*2/18;
+
+        const radius =
+            250+
+            Math.sin(
+                time*.001+i
+            )*40;
+
+        const x =
+            cx+
+            Math.cos(angle)*radius;
+
+        const y =
+            cy+
+            Math.sin(angle)*
+            radius*.35;
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            cx,
+            cy
+        );
+
+        ctx.lineTo(
+            x,
+            y
+        );
+
+        ctx.strokeStyle =
+            "rgba(60,220,255,.035)";
+
+        ctx.stroke();
+
+    }
+
+}
+
+
+/* RATÓN */
+
+window.addEventListener(
+    "mousemove",
+    e => {
+
+        targetX =
+            (e.clientX-W/2)/W;
+
+        targetY =
+            (e.clientY-H/2)/H;
+
+        document.getElementById(
+            "coords"
+        ).textContent =
+            `${(targetX*100).toFixed(2)} / ${(targetY*100).toFixed(2)}`;
+
+    }
+);
+
+
+/* ANIMACIÓN */
+
+function animate(){
+
+    time++;
+
+    ctx.clearRect(
+        0,
+        0,
+        W,
+        H
+    );
+
+    ctx.fillStyle =
+        "#010207";
+
+    ctx.fillRect(
+        0,
+        0,
+        W,
+        H
+    );
+
+    drawNebula();
+    drawStars();
+    drawGalaxy();
+    drawOrbits();
+    drawConnections();
+
+    planets.forEach(
+        drawPlanet
+    );
+
+    drawCode();
+
+    rotation += .15;
+
+    requestAnimationFrame(
+        animate
+    );
+}
+
+animate();
+
+</script>
+
+</body>
+</html>
